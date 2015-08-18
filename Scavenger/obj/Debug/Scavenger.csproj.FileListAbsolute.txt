@@ -1,0 +1,7 @@
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\bin\Debug\Scavenger.exe.config
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\bin\Debug\Scavenger.exe
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\bin\Debug\Scavenger.pdb
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\bin\Debug\iTextSharp.dll
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\obj\Debug\Scavenger.exe
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\obj\Debug\Scavenger.pdb
+c:\users\foxb4\documents\visual studio 2015\Projects\Scavenger\Scavenger\obj\Debug\Scavenger.csprojResolveAssemblyReference.cache
