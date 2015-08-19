@@ -14,26 +14,27 @@ namespace Scavenger
         static void Main(string[] args)
         {
             //VARIABLE DEFINITIONS
-            Document doc = new Document(PageSize.LETTER.Rotate());
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("E:/foxb4/Documents/Doc1.pdf", FileMode.Create));
-            PdfContentByte cb;
+            var doc = new Document(PageSize.LETTER.Rotate());
+            var writer = PdfWriter.GetInstance(doc, new FileStream("E:/foxb4/Documents/Doc1.pdf", FileMode.Create));
             Image ansImg, queImg; //ansImg top right, queImg bottom center
-            Phrase myText; // for the letter in top left
-            ColumnText ct; // for the format for the letter in top left 
             string[] alpha = new string[26] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             Image[] questions = new Image[26]; //image array for questions
             Image[] answers = new Image[26]; //image array for answers
+
             //find all the images
             for (int i = 1; i <= 26; i++)
             {
                 questions[i - 1] = Image.GetInstance("E:/Downloads/" + i + ".jpg");
                 answers[i - 1] = Image.GetInstance("E:/Downloads/" + i + ".jpg");
             }
+
             //shuffle alphabet array
             new Random().Shuffle(alpha);
+
             //open document
             doc.Open();
-            cb = writer.DirectContent;
+            var cb = writer.DirectContent;
+
             //main loop, creates pages and follows the template for the layout
             for (int i = 0; i < 26; i ++)
             {
@@ -47,26 +48,29 @@ namespace Scavenger
                 cb.Stroke();
 
                 //formatting for letter
-                myText = new Phrase(alpha[i]);
+                var myText = new Phrase(alpha[i]);
                 myText.Font.Size = 108f;
-                ct = new ColumnText(cb);
+                var ct = new ColumnText(cb);
                 ct.SetSimpleColumn(myText, 36f, doc.PageSize.Height - 36f - 100f, 277, 200, 32, Element.ALIGN_CENTER);
                 ct.Go();
+
                 //format image for top right
                 ansImg = answers[i];
                 ansImg.ScaleToFit(240f, 200f);
                 ansImg.SetAbsolutePosition(doc.PageSize.Width - 36f - 240f, doc.PageSize.Height - 36f - 100f - ansImg.ScaledHeight / 2);
                 doc.Add(ansImg);
+
                 //format image for bottom middle
                 queImg = questions[((i+1) % 26)];
                 queImg.ScaleToFit(720f, 302f);
                 queImg.SetAbsolutePosition(36f, 36f + 151f - queImg.ScaledHeight / 2);
                 doc.Add(queImg);
             }
-            //close the document
+
+            //closethe document
             doc.Close();
-            Console.WriteLine((doc.PageSize.Width - 72f)/3);
-            Console.WriteLine(doc.PageSize.Height - 72f);
+            
+            //open finished document
             System.Diagnostics.Process.Start("E:/foxb4/Documents/Doc1.pdf");
         }
     }
